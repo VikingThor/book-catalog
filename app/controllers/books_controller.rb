@@ -1,20 +1,24 @@
 class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
 
+  def home
+  end
+  
   def index
-    @books = Book.all.order(:name)
+    @books = Book.all 
+    @book = current_user.books
   end
 
   def show
   end
 
   def new
-    @book = Book.new
+    @book = current_user.books.build
+    @categories = Category.all.map{ |c| [c.name, c.id]}
   end
 
   def create
-    @book = Book.new(book_params)
-
+    @book = current_user.books.build(book_params)
     if @book.save
       redirect_to root_path
     else 
@@ -23,6 +27,7 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @categories = Category.all.map{ |c| [c.name, c.id]}
   end
 
   def update
@@ -41,7 +46,7 @@ class BooksController < ApplicationController
   private
 
     def book_params
-      params.require(:book).permit(:title, :description, :author, :language)
+      params.require(:book).permit(:title, :description, :author, :language, :user_id, :category_id)
     end
 
     def find_book
