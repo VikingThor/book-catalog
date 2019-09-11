@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/bootstrap"; // never forget the semicolon
+
+
+
+input {
+  height: auto !important;
+}
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+}
