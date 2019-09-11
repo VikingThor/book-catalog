@@ -5,8 +5,12 @@ class BooksController < ApplicationController
   end
   
   def index
-    @books = Book.all 
+    if params[:category].blank?
     @book = current_user.books
+    else
+      @category_id = Category.find_by(name: params[:category]).id
+      @book = current_user.books.where(:category_id => @category_id)
+    end
   end
 
   def show
