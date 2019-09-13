@@ -3,8 +3,9 @@
     <h1>Verwalten Sie ihre Büchersammlung</h1>
 
    
-
+<% if user_signed_in? == false %>
     <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+    <% end %>
   </div>
 
 

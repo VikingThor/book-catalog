@@ -24,7 +24,7 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.build(book_params)
     if @book.save
-      redirect_to root_path
+      redirect_to books_path
     else 
       render 'new'
     end
@@ -44,13 +44,13 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to root_path
+    redirect_to books_path
   end
 
   private
 
     def book_params
-      params.require(:book).permit(:title, :description, :author, :language, :user_id, :category_id)
+      params.require(:book).permit(:title, :description, :author, :language, :user_id, :category_id, :image)
     end
 
     def find_book

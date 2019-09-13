@@ -1,12 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Lora|Ubuntu:300,400,500); 
+@import './_custom';
 @import "~bootstrap/scss/bootstrap"; // never forget the semicolon
+@import './bootstrap_custom';
 
 
 
-input {
-  height: auto !important;
-}
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-}
+

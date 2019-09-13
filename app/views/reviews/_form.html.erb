@@ -1,0 +1,11 @@
+<%= form_for([@book, @book.reviews.build]) do |f| %>
+
+ <div id="rating-form">
+	<%= f.label :rating, "Rating" %>
+  <%= f.text_field :rating %>
+  <%= f.label :comment, "Comment" %>
+  <%= f.text_field :comment %>
+  <%= f.button :submit %>
+
+<% end %>
+

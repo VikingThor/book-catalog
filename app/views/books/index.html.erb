@@ -1,4 +1,21 @@
-<% @book.each do |book| %>
-  <h2><%= link_to book.title, book_path(book) %></h2>
+<h1 class="current-category"><%= params[:category] %></h1>
+
+<% if @book.count == 0 %>
+
+  <h1>There are no books currently in this category</h1>
+
+<% else%>
+  
+  <div class="row">
+
+  <% @book.each do |book| %>
+    <div class="col-md-3">
+      <%= link_to image_tag(book.image, class: "book"), book_path(book) %>
+    </div>
+
+  <% end %>
+
+  </div>
+
 <% end %>
 

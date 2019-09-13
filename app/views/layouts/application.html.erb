@@ -4,10 +4,12 @@
     <title>BookCatalog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+  
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  
+
   </head>
 
   <body>
@@ -20,15 +22,16 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav nav mr-auto">
-        <li class="nav-item">
+      
+        <% if user_signed_in? %>
+        <li>
           <%= link_to "Books", books_path, class: "nav-link" %>
         </li>
-        <li>
-          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
-        </li>
-        <% if user_signed_in? %>
           <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
         <% else %>
+          <li>
+          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+        </li>
           <li><%= link_to "Log In", new_user_session_path, class: "nav-link" %></li>  
         <% end %>
       </ul>
@@ -44,7 +47,7 @@
             <%= link_to "All", books_path, class: "nav-link" %>
             <div class="dropdown-divider"></div>
             <% Category.all.each do |category| %>
-              <li>
+              <li class=" <%= 'active' if params[:category] == category.name %>">
                 <%= link_to category.name, books_path(category: category.name), class: "nav-link" %>
               </li>
             <% end %>
@@ -69,7 +72,10 @@
  
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+      <div class="container">
+      
+      <%= yield %>
+      </div>
+      
   </body>
 </html>
