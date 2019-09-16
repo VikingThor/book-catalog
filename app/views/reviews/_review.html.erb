@@ -1,11 +1,22 @@
 <div class="review">
 
-<div class="review-rating" data-score="<%= review.rating %>"></div>
-<p class="review-comment"><%= review.comment %></p>
+  <div class="review-rating" data-score="<%= review.rating %>">
+  </div>
+  <p class="review-comment"><%= review.comment %></p>
 
-<div class="links btn-group">
+  <div class="links btn-group">
 
-<%= link_to "Edit", edit_book_review_path(review.book, review), class: "btn btn-custom"  %>
-<%= link_to "Delete", book_review_path(review.book, review), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-custom"  %>
+    <%= link_to "Edit", edit_book_review_path(review.book, review), class: "btn btn-custom"  %>
+    <%= link_to "Delete", book_review_path(review.book, review), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-custom"  %>
+  </div>
 </div>
-</div>
+
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
