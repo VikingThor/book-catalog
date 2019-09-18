@@ -1,4 +1,4 @@
 
 
 
-import '../jquery.raty'
+// import '../jquery.raty'
