@@ -10,7 +10,7 @@
 
   <% @book.each do |book| %>
     <div class="col-md-3">
-      <%= link_to image_tag(book.image, class: "book"), book_path(book) %>
+      <%= link_to image_tag(book.image, class: "book"), book_path(book) if book.image.attached?%>
     </div>
 
   <% end %>

@@ -29,6 +29,7 @@ class BooksController < ApplicationController
 
   def create
     @book = current_user.books.build(book_params)
+    @book.image.attach(params[:book][:image])
     if @book.save
       redirect_to books_path
     else 
